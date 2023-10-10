@@ -1,0 +1,35 @@
+[package]
+name = "pair"
+version = "0.1.0"
+authors = ["Bolaji Ahmad"]
+edition = "2021"
+
+[dependencies]
+ink = { version = "4.2.1", default-features = false }
+scale = { package = "parity-scale-codec", version = "3", default-features = false, features = [
+    "derive",
+] }
+scale-info = { version = "2.6", default-features = false, features = [
+    "derive",
+], optional = true }
+sp-arithmetic = { version = "15", default-features = false }
+
+[dev-dependencies]
+core = { path = "../core", default-features = false, features = [
+    "ink-as-dependency",
+] }
+psp22token = { path = "../psp22token", default-features = false, features = [
+    "ink-as-dependency",
+] }
+
+[lib]
+name = "pair"
+path = "src/lib.rs"
+
+[features]
+default = ["std"]
+std = ["ink/std", "scale/std", "scale-info/std", "sp-arithmetic/std"]
+ink-as-dependency = []
+
+[profile.release]
+overflow-checks = false
